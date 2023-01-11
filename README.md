@@ -14,11 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -44,3 +39,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## _**`Acerca del proyecto `**_
+
+### `Se usaron las siguientes librerias:`
+
+Axios para hacer llamadas <br/>
+Formik para el manejo de formularios <br/>
+Yup para definir validaciones <br/>
+Sass como preprocesador CSS <br/>
+TypeScript para la ayuda de su tipado estático <br/>

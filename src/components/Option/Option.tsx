@@ -1,5 +1,4 @@
 import { Field } from "formik";
-import React from "react";
 import { OptionList } from "../../Interfaces/api";
 import iconRight from "../../assets/icon-chevron-right.svg";
 import "./Option.scss";

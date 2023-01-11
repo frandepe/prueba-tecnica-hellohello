@@ -1,0 +1,18 @@
+.InputField {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    input {
+      padding: 10px;
+      margin: 10px 0 10px 0;
+      border: 2px solid var(--naranja);
+      border-radius: 3px;
+    }
+    label {
+      margin-top: 40px;
+    }
+  }
+  &__error {
+    color: rgb(170, 0, 0);
+  }
+}

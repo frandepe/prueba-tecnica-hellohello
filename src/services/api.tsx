@@ -5,7 +5,6 @@ const BASE_URL = "https://api-demo-hh.vercel.app/api";
 export const getOptionList = async () => {
   try {
     const result = await axios.get(`${BASE_URL}/options`);
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error);

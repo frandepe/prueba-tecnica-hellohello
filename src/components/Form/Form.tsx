@@ -1,29 +1,31 @@
-import * as yup from "yup";
 import { useEffect, useState } from "react";
+import * as yup from "yup";
+import { getOptionList, sendFormData } from "../../services/api";
 import InputField from "../inputField/inputField";
 import MultiStepForm, { FormStep } from "../MultiStepForm/MultiStepForm";
-import { getOptionList, sendFormData } from "../../services/api";
-import { OptionList } from "../../Interfaces/api";
 import { Option } from "../Option/Option";
+import { OptionList } from "../../Interfaces/api";
+import imgSuccess from "../../assets/icon-success.svg";
 import "./Form.scss";
 
 const validationSchema = yup.object({
   email: yup
     .string()
-    .email("Por favor, ingresá un correo electrónico válido.")
-    .required("Requerido"),
+    .matches(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      "Por favor, ingresá un correo electrónico válido."
+    )
+    .required("Este campo es requerido"),
 });
 
 export const Form = () => {
   const [list, setList] = useState<{ [key: string]: any }>([]);
   const [isLoading, setIsLoading] = useState<boolean | null>(null);
-  const [statusForm, setStatusForm] = useState(false);
   const getList = async () => {
     try {
       setIsLoading(true);
       const response = await getOptionList();
       setList(response!.data);
-      console.log(response!.data);
 
       setIsLoading(false);
     } catch (error) {
@@ -43,37 +45,47 @@ export const Form = () => {
           option: "",
         }}
         onSubmit={async ({ email, option }, { resetForm }) => {
-          setStatusForm(true);
           try {
-            const response = await sendFormData(email, option);
-            console.log(response);
+            await sendFormData(email, option);
           } catch (err) {
             console.log("Error catch:", err);
           } finally {
             resetForm();
-            setStatusForm(false);
           }
         }}
       >
-        <FormStep stepName="Opciones" onSubmit={() => console.log("Step2")}>
-          <h2 className="Form__step1--h3">
+        <FormStep
+          stepName="Opciones"
+          validationSchema={yup.object({
+            option: yup.string().required("Este campo es requerido"),
+          })}
+        >
+          <h2 className="Form__step--h2">
             Para empezar seleccioná una de las siguientes opciones.
           </h2>
-          {list?.map((e: OptionList) => (
-            <Option key={e.value} data={e} />
-          ))}
+          {!isLoading
+            ? list?.map((e: OptionList) => <Option key={e.value} data={e} />)
+            : "Cargando..."}
         </FormStep>
-        <FormStep
-          stepName="Mail"
-          onSubmit={() => console.log("Step1")}
-          validationSchema={validationSchema}
-        >
-          <InputField name="email" placeholder="Email" nameError="email" />
+        <FormStep stepName="Mail" validationSchema={validationSchema}>
+          <h2 className="Form__step--h2">
+            Para terminar completá el siguiente formulario.
+          </h2>
+          <InputField
+            name="email"
+            placeholder="juan@example.com"
+            nameError="email"
+            label="Correo electrónico"
+          />
         </FormStep>
-        <FormStep
-          stepName="Gracias"
-          onSubmit={() => console.log("Step3")}
-        ></FormStep>
+        <FormStep stepName="Gracias">
+          <div className="Form__success">
+            <img src={imgSuccess} alt="success" />
+            <h2 className="Form__step--h2">
+              Gracias por completar nuestro formulario.
+            </h2>
+          </div>
+        </FormStep>
       </MultiStepForm>
     </div>
   );

@@ -1,21 +1,28 @@
-import React from "react";
 import { Field, ErrorMessage, useField, FieldConfig } from "formik";
+import "./InputField.scss";
 
 interface Props extends FieldConfig {
   placeholder: string;
   nameError: string;
+  label: string;
 }
 
-const InputField = ({ placeholder, nameError, ...props }: Props) => {
+const InputField = ({ label, placeholder, nameError, ...props }: Props) => {
   const [field, meta] = useField(props as any);
   return (
-    <>
-      <Field placeholder={placeholder} {...field} {...props} />
+    <div className="InputField__container">
+      <label htmlFor={props.name}>{label}</label>
+      <Field
+        placeholder={placeholder}
+        {...field}
+        {...props}
+        style={meta.error && { border: "1px solid rgb(170, 0, 0)" }}
+      />
       <ErrorMessage
         name={nameError}
-        component={() => <div>{meta.error}</div>}
+        component={() => <div className="InputField__error">{meta.error}</div>}
       />
-    </>
+    </div>
   );
 };
 

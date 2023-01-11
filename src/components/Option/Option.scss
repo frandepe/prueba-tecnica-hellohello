@@ -4,7 +4,6 @@
       border: 2px solid var(--naranja);
     }
     input {
-      //   opacity: 0;
       display: none;
     }
   }
@@ -16,6 +15,7 @@
     margin-top: 23px;
     height: 90px;
     width: 390px;
+    border: 2px solid var(--fondo);
   }
   &__textImg {
     display: flex;
