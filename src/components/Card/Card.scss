@@ -1,0 +1,60 @@
+.Card {
+  &__container {
+    width: 370px;
+    height: 500px;
+    box-shadow: var(--sombra);
+    margin-left: 50px;
+    img {
+      width: 100%;
+    }
+    &--text {
+      margin: 35px 20px 20px 20px;
+      line-height: 25pt;
+    }
+
+    button {
+      border: 2px solid var(--azul);
+      border-radius: 3px;
+      padding: 10px;
+      width: 100%;
+      color: var(--azul);
+      cursor: pointer;
+      font-weight: 700;
+      margin: 20px 0 10px 0;
+    }
+  }
+  &__home {
+    box-shadow: var(--sombra);
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 62%;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  &__secondText {
+    width: 320px;
+  }
+  &__firstText {
+    font-weight: 700;
+  }
+  &__textIcon {
+    display: flex;
+    img {
+      width: 25px;
+      height: 25px;
+      align-self: center;
+      margin-right: 10px;
+    }
+    p {
+      color: var(--gris);
+    }
+  }
+}

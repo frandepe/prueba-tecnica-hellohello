@@ -1,0 +1,40 @@
+.label {
+  &__container {
+    input:checked ~ .label__button {
+      border: 2px solid var(--naranja);
+    }
+    input {
+      //   opacity: 0;
+      display: none;
+    }
+  }
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+    box-shadow: var(--sombra);
+    margin-top: 23px;
+    height: 90px;
+    width: 390px;
+  }
+  &__textImg {
+    display: flex;
+    align-items: center;
+    img {
+      width: 80px;
+      height: auto;
+      margin: 15px;
+      border-radius: 3px;
+    }
+    p {
+      width: 190px;
+      font-weight: 500;
+    }
+  }
+  &__svg--right {
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    margin-right: 10px;
+  }
+}
